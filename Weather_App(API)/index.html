@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A modern weather application powered by the Open-Meteo API."
+    >
+
+    <title>Weather App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body class="weather-default">
+    <div class="background-overlay"></div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <div>
+                <p class="header-label">Live forecast</p>
+                <h1>
+                    Weather
+                    <span>App</span>
+                </h1>
+            </div>
+
+            <button
+                class="location-button"
+                id="locationButton"
+                type="button"
+                aria-label="Use my current location"
+                title="Use my current location"
+            >
+                <i class="fa-solid fa-location-crosshairs"></i>
+            </button>
+        </header>
+
+        <form class="search-form" id="searchForm">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search for a city..."
+                    aria-label="City name"
+                    autocomplete="off"
+                    required
+                >
+
+                <button
+                    class="clear-button hidden"
+                    id="clearButton"
+                    type="button"
+                    aria-label="Clear search"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <button class="search-button" type="submit">
+                Search
+            </button>
+        </form>
+
+        <div
+            class="message-box hidden"
+            id="messageBox"
+            role="alert"
+        ></div>
+
+        <section class="loading-container hidden" id="loadingContainer">
+            <div class="loader"></div>
+            <p>Loading weather data...</p>
+        </section>
+
+        <section class="weather-content hidden" id="weatherContent">
+            <article class="current-weather-card">
+                <div class="current-weather-top">
+                    <div class="location-info">
+                        <p class="current-date" id="currentDate">
+                            Monday, 1 January
+                        </p>
+
+                        <h2 id="cityName">City</h2>
+
+                        <p class="country-name" id="countryName">
+                            Country
+                        </p>
+                    </div>
+
+                    <div
+                        class="weather-icon-large"
+                        id="currentWeatherIcon"
+                        aria-hidden="true"
+                    >
+                        ☀️
+                    </div>
+                </div>
+
+                <div class="main-temperature-section">
+                    <div>
+                        <p class="temperature" id="currentTemperature">
+                            20°
+                        </p>
+
+                        <p class="weather-description" id="weatherDescription">
+                            Clear sky
+                        </p>
+                    </div>
+
+                    <div class="temperature-range">
+                        <span>
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span id="maxTemperature">24°</span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <span id="minTemperature">14°</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="weather-details-grid">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+
+                        <div>
+                            <p>Feels like</p>
+                            <strong id="feelsLike">20°</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+
+                        <div>
+                            <p>Humidity</p>
+                            <strong id="humidity">50%</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+
+                        <div>
+                            <p>Wind</p>
+                            <strong id="windSpeed">12 km/h</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fa-solid fa-cloud-rain"></i>
+                        </div>
+
+                        <div>
+                            <p>Precipitation</p>
+                            <strong id="precipitation">0 mm</strong>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <section class="forecast-section">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-label">Next days</p>
+                        <h2>5-day forecast</h2>
+                    </div>
+
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div class="forecast-grid" id="forecastGrid"></div>
+            </section>
+
+            <footer class="app-footer">
+                <p>
+                    Weather data provided by
+                    <a
+                        href="https://open-meteo.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open-Meteo
+                    </a>
+                </p>
+
+                <p id="lastUpdated">Last updated: --:--</p>
+            </footer>
+        </section>
+    </main>
+</body>
+</html>
